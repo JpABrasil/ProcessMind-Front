@@ -33,7 +33,7 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
     if (usuarioParam) {
       setUsuario(usuarioParam);
     } else {
-      window.location.href = process.env.NEXT_PUBLIC_LOGIN_URL!
+      console.warn("Parâmetro 'usuario' não encontrado na URL. Usando valor padrão.");
     }
   }, []);
 
