@@ -6,7 +6,7 @@ type ChatContextType = {
   chatAtual: any | null;
   setChatAtual: (chat: any | null) => void;
   listaChats: any[];
-  setListaChats: React.Dispatch<React.SetStateAction<{ id: string, titulo: string }[]>>;
+  setListaChats: React.Dispatch<React.SetStateAction<any[]>>;
 };
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);

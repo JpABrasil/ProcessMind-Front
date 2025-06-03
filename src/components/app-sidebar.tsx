@@ -94,10 +94,10 @@ export function AppSidebar() {
     setChatAtual([]);
     const newChatItem: SidebarItem = { title: "Novo Chat" };
 
-    const chatExists = chats.some((chat) => chat.title === newChatItem.title);
+    const chatExists = listaChats.some((chat) => chat.title === newChatItem.title);
     if (chatExists) return;
 
-    setChats((prev) => [...prev, newChatItem]);
+    setListaChats((prev) => [...prev, newChatItem]);
 
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set("id_chat", newChatItem.title);
