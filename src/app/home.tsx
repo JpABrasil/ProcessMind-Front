@@ -60,7 +60,7 @@ export default function Home({ agente }: Readonly<{ agente: string }>) {
   const [arquivos, setArquivos] = useState<FileList | null>(null);
 
   useEffect(() => {
-    setChatAtual([]);  // Limpar o chat atual sempre que o agente mudar
+    setChatAtual([]);  
   }, [agente, setChatAtual]);
 
   return (

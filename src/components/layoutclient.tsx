@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect,ReactElement } from "react";
-import React from "react"; // Adicione uma importação, se necessário
+import { use, useEffect } from "react";
+import React from "react"; 
 import {DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuTrigger,} from "@/components/ui/dropdown-menu";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
@@ -17,13 +17,36 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
 
 
 function InnerLayoutClient({ children }: { children: React.ReactNode }) {
-  const { agente, setAgente, usuario } = useAgente();
+  const { agente, setAgente, usuario, setUsuario } = useAgente();
+  
   const lista_agentes = ["QA Diário Oficial", "Analista Gratificação Titulação"];
 
   useEffect(() => {
     const newUrl = `?agente=${encodeURIComponent(agente)}`;
     window.history.pushState({}, "", newUrl);
   }, [agente]);
+  useEffect(() => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        try {
+          const userObj = JSON.parse(storedUser);
+          if (userObj.email) {
+            setUsuario(userObj.email);
+          } else {
+            // Se não tiver email, redireciona
+            //window.location.href = "https://processmind.up.railway.app/";
+            console.error("Usuário não possui email definido.");
+          }
+        } catch (error) {
+          // JSON inválido, redireciona
+          console.error("Erro ao analisar o usuário do localStorage:", error);
+          //window.location.href = "https://processmind.up.railway.app/";
+        }
+      } else {
+        console.error("Usuário não encontrado no localStorage.");
+        //window.location.href = "https://processmind.up.railway.app/";
+      }
+  }, []);
 
   return (
     <ChatProvider>
@@ -31,7 +54,7 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
         <AppSidebar key={agente} agente={agente} usuario={usuario} />
         <main className="w-10/10 flex flex-col">
           <div className="flex flex-row p-2 items-center relative">
-            <SidebarTrigger className="color-white hover:bg-green-800 hover:cursor-pointer" />
+            {/*<SidebarTrigger className="color-white hover:bg-green-800 hover:cursor-pointer" />*/}
             <DropdownMenu>
               <DropdownMenuTrigger className="text-white hover:cursor-pointer hover:bg-green-800 p-1 rounded-lg">
                 Escolha seu Agente

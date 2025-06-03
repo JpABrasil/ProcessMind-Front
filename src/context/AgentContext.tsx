@@ -5,16 +5,17 @@ type AgenteContextType = {
   agente: string;
   setAgente: (agente: string) => void;
   usuario: string; // opcional, se necessário
+  setUsuario: (usuario: string) => void; // opcional, se necessário
 };
 
 const AgenteContext = createContext<AgenteContextType | undefined>(undefined);
 
 export function AgenteProvider({ children }: { children: ReactNode }) {
   const [agente, setAgente] = useState("QA Diário Oficial");
-  const [usuario, setUsuario] = useState("defaultuser");
+  const [usuario, setUsuario] = useState("");
 
   return (
-    <AgenteContext.Provider value={{ agente, setAgente, usuario: usuario}}>
+    <AgenteContext.Provider value={{ agente, setAgente, usuario, setUsuario}}>
       {children}
     </AgenteContext.Provider>
   );

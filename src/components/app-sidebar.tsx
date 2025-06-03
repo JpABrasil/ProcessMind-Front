@@ -1,13 +1,11 @@
 "use client"
 import {Sidebar,SidebarContent,SidebarGroup,SidebarGroupContent,SidebarGroupLabel,SidebarMenu,SidebarMenuButton,SidebarMenuItem,} from "@/components/ui/sidebar"
 import { useChatContext } from "@/context/ChatContext"
-import { relative } from "path"
 import { useState } from "react"
 import { useEffect } from "react"
 
 export type SidebarItem = {
     title: string;
-    //id: string;
 };
   
 type AppSidebarProps = {
@@ -24,15 +22,14 @@ const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL// URL do backend
 
 function returnChat(agente: string, id_chat: string,usuario: string,setChatAtual:any) {
   if (id_chat === "Novo Chat") {
-    setChatAtual([]); // Limpa o chat atual
+    setChatAtual([]);
     const searchParams = new URLSearchParams(window.location.search);
-    // Adicionar ou modificar o parâmetro "id_chat"
     searchParams.set("id_chat", id_chat);
-    // Atualizar a URL com os parâmetros antigos + o novo parâmetro
     const newUrl = `?${searchParams.toString()}`;
     window.history.pushState({}, '', newUrl);
-    return; // Se for um novo chat, não faz nada
+    return; 
   }
+
   const url = `${backend_url}/retornar_chat?id_usuario=${encodeURIComponent(usuario)}&agente=${encodeURIComponent(agente)}&id_chat=${encodeURIComponent(id_chat)}`
   fetch(url, {
       method: "GET",
@@ -128,8 +125,7 @@ export function AppSidebar({ agente, usuario}: AppSidebarProps) {
     window.history.pushState({}, '', newUrl);
 
   }
-    
-  //Rodar Função Quando o componente é montado
+ 
   useEffect(() => {
       loadChats(usuario,agente);
   }, [agente]);

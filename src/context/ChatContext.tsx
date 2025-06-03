@@ -2,8 +2,6 @@
 "use client"
 import { createContext, useContext, useState, ReactNode } from "react";
 
-
-
 type ChatContextType = {
   chatAtual: any | null;
   setChatAtual: (chat: any | null) => void;
