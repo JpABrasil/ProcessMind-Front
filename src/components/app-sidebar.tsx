@@ -35,7 +35,7 @@ function returnChat(agente: string, id_chat: string, usuario: string, setChatAtu
     return;
   }
 
-  const url = `${backend_url}/retornar_chat?id_usuario=${encodeURIComponent(usuario)}&agente=${encodeURIComponent(agente)}&id_chat=${encodeURIComponent(id_chat)}`;
+  const url = `${backend_url}/retornar_chat?usuario=${encodeURIComponent(usuario)}&agente=${encodeURIComponent(agente)}&id_chat=${encodeURIComponent(id_chat)}`;
 
   fetch(url, {
     method: "GET",
@@ -80,7 +80,7 @@ export function AppSidebar() {
   const [chats, setChats] = useState<SidebarItem[]>([]);
 
   function loadChats(usuario: string, agente: string) {
-    const url = `${backend_url}/listar_chats?id_usuario=${encodeURIComponent(usuario)}&agente=${encodeURIComponent(agente)}`;
+    const url = `${backend_url}/listar_chats?usuario=${encodeURIComponent(usuario)}&agente=${encodeURIComponent(agente)}`;
     fetch(url, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
