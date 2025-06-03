@@ -22,7 +22,10 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
   const lista_agentes = ["QA Diário Oficial", "Analista Gratificação Titulação"];
 
   useEffect(() => {
-    const newUrl = `?agente=${encodeURIComponent(agente)}`;
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set("agente", agente); // Atualiza ou adiciona 'agente'
+
+    const newUrl = `?${searchParams.toString()}`;
     window.history.pushState({}, "", newUrl);
   }, [agente]);
 
