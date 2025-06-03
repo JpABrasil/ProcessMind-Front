@@ -21,8 +21,6 @@ FROM node:18-alpine AS runner
 
 WORKDIR /app
 
-# Apenas produção, evita instalar dependências de dev
-ENV NODE_ENV=production
 
 # Copia os arquivos necessários da etapa de build
 COPY --from=builder /app/public ./public

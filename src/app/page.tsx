@@ -1,17 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Key } from "react";
 import { useChatContext } from "@/context/ChatContext"
 import ReactMarkdown from 'react-markdown';
 
-const backend = "http://localhost:8001"; // URL do backend
+const backend = process.env.REACT_APP_BACKEND_URL;
 
 function sendMessage(setChatAtual:any,prompt:string, arquivos: FileList | null) {
-  //Atualiza o chat atual com a mensagem do usuário
   setChatAtual((prevChat:any) => [...prevChat, { autor: "user", conteudo: prompt }]);
 
   const searchParams = new URLSearchParams(window.location.search);
-  const id_chat = searchParams.get("id_chat") || "defaultchat";
-  const agente = searchParams.get("agente") || "QA Diário Oficial";
+  const id_chat = searchParams.get("id_chat") ?? "defaultchat";
+  const agente = searchParams.get("agente") ?? "QA Diário Oficial";
 
   const formData = new FormData();
   formData.append("prompt", prompt);
@@ -20,8 +19,8 @@ function sendMessage(setChatAtual:any,prompt:string, arquivos: FileList | null) 
   formData.append("agente", agente);
 
   if (arquivos) {
-    for (let i = 0; i < arquivos.length; i++) {
-      formData.append("anexos", arquivos[i]); // pode usar "anexos[]" se o backend aceitar array
+    for (const element of arquivos) {
+      formData.append("anexos", element); // pode usar "anexos[]" se o backend aceitar array
     }
   }
 
@@ -55,7 +54,7 @@ function sendMessage(setChatAtual:any,prompt:string, arquivos: FileList | null) 
   })
 }
 
-export default function Home({ agente }: { agente: string }) {
+export default function Home({ agente }: Readonly<{ agente: string }>) {
   const { chatAtual,setChatAtual } = useChatContext();
   const [prompt, setPrompt] = useState("");
   const [arquivos, setArquivos] = useState<FileList | null>(null);
@@ -68,7 +67,7 @@ export default function Home({ agente }: { agente: string }) {
     <main className="w-10/10 h-200 p-5 pt-0 flex flex-col">
       <div className="flex flex-col w-full h-8/10 p-4 pb-0 overflow-y-auto  items-center">
         <div className="flex flex-col w-200 overflow-y-auto overflow-x-hidden h-full gap-2"> 
-          {(chatAtual ?? []).map((mensagem, index) => (
+          {(chatAtual ?? []).map((mensagem: { autor: string; conteudo: string | null | undefined; }, index: Key | null | undefined) => (
             <div key={index}
               className={`p-3 rounded-xl ${
                 mensagem.autor === "user"
