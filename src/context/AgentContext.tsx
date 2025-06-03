@@ -11,7 +11,7 @@ type AgenteContextType = {
 const AgenteContext = createContext<AgenteContextType | undefined>(undefined);
 
 export function AgenteProvider({ children }: { children: ReactNode }) {
-  const [agente, setAgente] = useState("QA Diário Oficial");
+  const [agente, setAgente] = useState("Analista Gratificação Titulação");
   const [usuario, setUsuario] = useState("");
 
   return (
