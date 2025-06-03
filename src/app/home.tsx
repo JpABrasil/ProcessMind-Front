@@ -47,12 +47,13 @@ function sendMessage(setChatAtual:any,prompt:string, arquivos: FileList | null,s
 
       setListaChats((prev: any) =>
         prev.map((chat: any) => {
-            console.log(chat?.title, data.novo_id, chat);
-            return chat.title === "Novo Chat"
-            ? { ...chat, id: data.novo_id }
-            : chat;
+            // Verifica se o título do chat é "Novo Chat" e atualiza o id
+            if (chat.title === "Novo Chat") {
+              return { ...chat, id: data.novo_id, title: "Novo Chat" };
+            }
+            
         })
-    );
+     );
 
     }
     setChatAtual((prevChat:any) => [...prevChat, { autor: "model", conteudo: data.response }]);
