@@ -20,7 +20,7 @@ type ChatMsg ={
   conteudo: string;
 }
 
-const backend_url = "http://localhost:8001" // URL do backend
+const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL// URL do backend
 
 function returnChat(agente: string, id_chat: string,usuario: string,setChatAtual:any) {
   if (id_chat === "Novo Chat") {

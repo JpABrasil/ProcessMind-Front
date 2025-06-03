@@ -3,7 +3,7 @@ import { useState, useEffect, Key } from "react";
 import { useChatContext } from "@/context/ChatContext"
 import ReactMarkdown from 'react-markdown';
 
-const backend = process.env.REACT_APP_BACKEND_URL;
+const backend = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 function sendMessage(setChatAtual:any,prompt:string, arquivos: FileList | null) {
   setChatAtual((prevChat:any) => [...prevChat, { autor: "user", conteudo: prompt }]);
