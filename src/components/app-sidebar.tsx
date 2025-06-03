@@ -1,15 +1,5 @@
 "use client"
-
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar"
+import {Sidebar,SidebarContent,SidebarGroup,SidebarGroupContent,SidebarGroupLabel,SidebarMenu,SidebarMenuButton,SidebarMenuItem,} from "@/components/ui/sidebar"
 import { useChatContext } from "@/context/ChatContext"
 import { useAgente } from "@/context/AgentContext"
 import { useState, useEffect } from "react"
@@ -74,7 +64,7 @@ function returnChat(agente: string, id_chat: string, usuario: string, setChatAtu
 }
 
 export function AppSidebar() {
-  const { setChatAtual } = useChatContext();
+  const { setChatAtual,listaChats,setListaChats } = useChatContext();
   const { agente, usuario } = useAgente();
 
   const [chats, setChats] = useState<SidebarItem[]>([]);
@@ -93,7 +83,7 @@ export function AppSidebar() {
         const chatsData = data.chats.map((chat: { name: string }) => ({
           title: chat,
         }));
-        setChats(chatsData);
+        setListaChats(chatsData);
       })
       .catch((error) => {
         console.error("Erro ao carregar chats:", error);
@@ -134,13 +124,9 @@ export function AppSidebar() {
 
           <SidebarGroupContent>
             <SidebarMenu>
-              {chats.slice().reverse().map((chat) => (
+              {listaChats.slice().reverse().map((chat) => (
                 <SidebarMenuItem key={chat.title}>
-                  <SidebarMenuButton
-                    onClick={() => returnChat(agente, chat.title, usuario, setChatAtual)}
-                    asChild
-                    className="hover:bg-green-800 hover:cursor-pointer"
-                  >
+                  <SidebarMenuButton onClick={() => returnChat(agente, chat.title, usuario, setChatAtual)} asChild className="hover:bg-green-800 hover:cursor-pointer">
                     <a>
                       <span className="text-white">{chat.title}</span>
                     </a>
