@@ -25,27 +25,36 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
     const newUrl = `?agente=${encodeURIComponent(agente)}`;
     window.history.pushState({}, "", newUrl);
   }, [agente]);
+
   useEffect(() => {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        try {
-          const userObj = JSON.parse(storedUser);
-          if (userObj.email) {
-            setUsuario(userObj.email);
+    if (!localStorage.getItem("token")) {
+      const searchParams = new URLSearchParams(window.location.search);
+      const tokenParam = searchParams.get("token");
+      if (tokenParam) {
+        localStorage.setItem("token", tokenParam);
+        fetch(`https://processmind.up.railway.app/validar_token?{$token}`, {
+          method: "GET",
+        }).then((response) => {
+          if (response.ok) {
+            response.json().then((data) => {
+              setUsuario(data.usuario);
+            });
           } else {
-            // Se não tiver email, redireciona
-            //window.location.href = "https://processmind.up.railway.app/";
-            console.error("Usuário não possui email definido.");
+            console.error("Token inválido ou expirado");
+            window.location.href = "https://processmind.up.railway.app"; // ou outra ação apropriada
           }
-        } catch (error) {
-          // JSON inválido, redireciona
-          console.error("Erro ao analisar o usuário do localStorage:", error);
-          //window.location.href = "https://processmind.up.railway.app/";
-        }
-      } else {
-        console.error("Usuário não encontrado no localStorage.");
-        //window.location.href = "https://processmind.up.railway.app/";
+        }).catch((error) => {
+          console.error("Erro ao validar o token:", error);
+          window.location.href = "https://processmind.up.railway.app"; // ou outra ação apropriada
+        });
       }
+      else {
+        window.location.href = "https//processmind.up.railway.app"; // ou outra ação apropriada
+      }
+    }
+    else {
+      const token = localStorage.getItem("token");
+    }
   }, []);
 
   return (
