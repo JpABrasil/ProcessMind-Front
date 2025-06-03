@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono, Montserrat } from "next/font/google"
-
-import "../../app/globals.css"
+import Home from "@/app/page"
+import "../app/globals.css"
 import LayoutClient from "@/components/layoutclient"
 
 const geistSans = Geist({
@@ -25,6 +25,7 @@ export const metadata: Metadata = {
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const agente = "QA Diário Oficial"; // ou vindo de algum estado/contexto
   return (
     <html lang="pt-BR" className={`${montserrat.variable}`} style={{fontFamily:"Montserrat"}}>
       <body className="overflow-hidden bg-green-950 flex flex-col ">
@@ -36,7 +37,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <div className="flex flex-row h-2 w-10/10 " style={{backgroundColor:"#4B9F37"}}></div>
         <div>
-          <LayoutClient>{children}</LayoutClient>
+          <LayoutClient><Home agente={agente} /></LayoutClient>
         </div>
       </body>
     </html>
