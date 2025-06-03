@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "../app/globals.css";
 import LayoutClient from "@/components/layoutclient";
+import { Suspense } from "react";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,7 +52,9 @@ export default function RootLayout({
           className="flex flex-row h-2 w-10/10 "
           style={{ backgroundColor: "#4B9F37" }}
         ></div>
-        <LayoutClient>{children}</LayoutClient>
+        <Suspense fallback={<div>Loading...</div>}>
+          <LayoutClient>{children}</LayoutClient>
+        </Suspense>
       </body>
     </html>
   );
