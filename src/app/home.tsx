@@ -82,7 +82,7 @@ export default function Home({ agente }: Readonly<{ agente: string }>) {
               className={`p-3 rounded-xl ${
                 mensagem.autor === "user"
                   ? "max-w-md bg-gray-200 self-end text-black"
-                  : "text-white text-2xl text-justify"
+                  : "text-[#485465] text-2xl text-justify"
               }`}>
               <ReactMarkdown>{mensagem.conteudo}</ReactMarkdown>
             </div>
