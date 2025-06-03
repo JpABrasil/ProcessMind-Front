@@ -32,7 +32,7 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
       const tokenParam = searchParams.get("token");
       if (tokenParam) {
         localStorage.setItem("token", tokenParam);
-        fetch(`https://processmind.up.railway.app/validar_token?{$token}`, {
+        fetch(process.env.NEXT_PUBLIC_API_URL + `/validar_token?{$token}`, {
           method: "GET",
         }).then((response) => {
           if (response.ok) {
