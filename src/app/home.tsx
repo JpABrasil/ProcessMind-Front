@@ -48,7 +48,7 @@ function sendMessage(setChatAtual:any,prompt:string, arquivos: FileList | null,s
       setListaChats((prev: any) =>
         prev.map((chat: any) => {
             if (chat && chat.title === "Novo Chat") {
-            return { ...chat, id: data.novo_id, title: "Novo Chat" };
+                return { ...chat, id: data.novo_id, title: data.novo_id };
             }
             return chat; // ← SEMPRE retorna o chat atual se não for alterado
         })
