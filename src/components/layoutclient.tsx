@@ -27,33 +27,13 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
   }, [agente]);
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      const searchParams = new URLSearchParams(window.location.search);
-      const tokenParam = searchParams.get("token");
-      if (tokenParam) {
-        localStorage.setItem("token", tokenParam);
-        fetch(process.env.NEXT_PUBLIC_API_URL + `/validar_token?{$token}`, {
-          method: "GET",
-        }).then((response) => {
-          if (response.ok) {
-            response.json().then((data) => {
-              setUsuario(data.usuario);
-            });
-          } else {
-            console.error("Token inválido ou expirado");
-            window.location.href = "https://processmind.up.railway.app"; // ou outra ação apropriada
-          }
-        }).catch((error) => {
-          console.error("Erro ao validar o token:", error);
-          window.location.href = "https://processmind.up.railway.app"; // ou outra ação apropriada
-        });
-      }
-      else {
-        window.location.href = "https//processmind.up.railway.app"; // ou outra ação apropriada
-      }
-    }
-    else {
-      const token = localStorage.getItem("token");
+    const searchParams = new URLSearchParams(window.location.search);
+    const usuarioParam = searchParams.get("usuario");
+
+    if (usuarioParam) {
+      setUsuario(usuarioParam);
+    } else {
+      window.location.href = process.env.NEXT_PUBLIC_LOGIN_URL!
     }
   }, []);
 
