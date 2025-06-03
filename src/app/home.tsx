@@ -90,8 +90,8 @@ export default function Home({ agente }: Readonly<{ agente: string }>) {
         </div>
       </div>
       <div className="w-full h-2/10 mb-5 p-4 pt-0 flex flex-col items-center" >
-          <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} className="w-200 h-7/10 bg-green-800 text-white placeholder:white p-2 focus:outline-0 resize-none border-1 border-green-700 border-b-0 rounded-lg rounded-b-none" placeholder="Digite sua Mensagem"></textarea>
-          <div className="w-200 h-3/10 bg-green-800 flex flex-row items-center border-green-700 border-1 border-t-0 rounded-lg rounded-t-none p-2">
+          <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} className="w-200 h-7/10 bg-[#e4e4e4] text-[#485465] placeholder:white p-2 focus:outline-0 resize-none  rounded-lg rounded-b-none" placeholder="Digite sua Mensagem"></textarea>
+          <div className="w-200 h-3/10 bg-[#e4e4e4] flex flex-row items-center border-t-0 rounded-lg rounded-t-none p-2">
             <input type="file" id="file-upload" className="hidden" onChange={(e) => setArquivos(e.target.files)}/>
             <label htmlFor="file-upload" className="cursor-pointer p-2 bg-white rounded-4xl hover:bg-gray-300">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="" ><path d="M8.25 15.75V9.75H2.25C1.83579 9.75 1.5 9.41421 1.5 9C1.5 8.58579 1.83579 8.25 2.25 8.25H8.25V2.25C8.25 1.83579 8.58579 1.5 9 1.5C9.41421 1.5 9.75 1.83579 9.75 2.25V8.25H15.75L15.8271 8.25391C16.2051 8.29253 16.5 8.61183 16.5 9C16.5 9.38817 16.2051 9.70747 15.8271 9.74609L15.75 9.75H9.75V15.75C9.75 16.1642 9.41421 16.5 9 16.5C8.58579 16.5 8.25 16.1642 8.25 15.75Z" fill="currentColor"></path></svg>

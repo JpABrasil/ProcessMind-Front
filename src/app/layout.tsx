@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${montserrat.variable}`}>
-      <body className="overflow-hidden bg-green-950 flex flex-col ">
+      <body className="overflow-hidden bg-green-950 flex flex-col font-[family-name:var(--font-montserrat)] ">
         <div className="h-20 w-10/10 flex flex-row items-center justify-between gap-10 pl-10 pr-10 mb-0" style={{ backgroundColor: "#2D4040" }}>
           <div className="flex flex-row items-center gap-10">
             <img src="/Governo do estado.svg" alt="Logo" className="h-12 w-auto"/>

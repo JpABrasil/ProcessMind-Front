@@ -44,11 +44,11 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
     <ChatProvider>
       <SidebarProvider>
         <AppSidebar key={agente}  />
-        <main className="w-10/10 flex flex-col">
+        <main className="w-10/10 flex flex-col bg-[#f2f2f2]">
           <div className="flex flex-row p-2 items-center relative">
             {/*<SidebarTrigger className="color-white hover:bg-green-800 hover:cursor-pointer" />*/}
             <DropdownMenu>
-              <DropdownMenuTrigger className="text-white hover:cursor-pointer hover:bg-green-800 p-1 rounded-lg">
+              <DropdownMenuTrigger className="text-[#485465] bg-[#e4e4e4] font-medium hover:cursor-pointer hover:bg-[#bebebe] p-1 rounded-lg">
                 Escolha seu Agente
               </DropdownMenuTrigger>
               <DropdownMenuContent>
@@ -70,10 +70,10 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <a className="absolute left-1/2 -translate-x-1/2 text-2xl text-white">
+            <a className="absolute left-1/2 -translate-x-1/2 text-2xl text-[#485465] font-medium">
               {agente}
             </a>
-            <a className="ml-auto bg-white rounded-full text-green-900 pl-2 pr-2 mr-5 hover:cursor-pointer">
+            <a className="ml-auto bg-[#e4e4e4] rounded-4xl text-green-900 pl-3 pr-3 mr-5 hover:cursor-pointer">
               {usuario[0]}
             </a>
           </div>
