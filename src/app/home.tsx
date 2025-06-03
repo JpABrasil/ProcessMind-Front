@@ -46,11 +46,13 @@ function sendMessage(setChatAtual:any,prompt:string, arquivos: FileList | null,s
       window.history.pushState({}, '', newUrl);
 
       setListaChats((prev: any) =>
-        prev.map((chat: any) =>
-            console.log(chat.title, data.novo_id),
-            //chat.title === "Novo Chat" ? { ...chat, id: data.novo_id } : chat
-        )
-      );
+        prev.map((chat: any) => {
+            console.log(chat?.title, data.novo_id, chat);
+            return chat.title === "Novo Chat"
+            ? { ...chat, id: data.novo_id }
+            : chat;
+        })
+    );
 
     }
     setChatAtual((prevChat:any) => [...prevChat, { autor: "model", conteudo: data.response }]);
