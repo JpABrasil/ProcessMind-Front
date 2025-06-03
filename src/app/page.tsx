@@ -4,7 +4,7 @@ import Home from "./home";
 
 export default function Page() {
   const searchParams = useSearchParams();
-  const agente = searchParams.get("agente") ?? "QA Diário Oficial";
+  const agente = searchParams.get("agente") ?? "Analista Gratificação Titulação";
 
   return <Home agente={agente}  />;
 }
