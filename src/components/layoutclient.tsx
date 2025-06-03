@@ -56,8 +56,12 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
                   <DropdownMenuItem
                     key={nome}
                     onClick={() => {
-                      const newUrl = `?agente=${encodeURIComponent(nome)}`;
+                      const searchParams = new URLSearchParams(window.location.search);
+                      searchParams.set("agente", nome); // Atualiza agente mantendo os outros parâmetros
+
+                      const newUrl = `?${searchParams.toString()}`;
                       window.history.pushState({}, "", newUrl);
+
                       setAgente(nome);
                     }}
                   >
