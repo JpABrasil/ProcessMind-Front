@@ -43,7 +43,7 @@ function InnerLayoutClient({ children }: { children: React.ReactNode }) {
   return (
     <ChatProvider>
       <SidebarProvider>
-        <AppSidebar key={agente} agente={agente} usuario={usuario} />
+        <AppSidebar key={agente}  />
         <main className="w-10/10 flex flex-col">
           <div className="flex flex-row p-2 items-center relative">
             {/*<SidebarTrigger className="color-white hover:bg-green-800 hover:cursor-pointer" />*/}
