@@ -19,7 +19,7 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
 function InnerLayoutClient({ children }: { children: React.ReactNode }) {
   const { agente, setAgente, usuario, setUsuario } = useAgente();
   
-  const lista_agentes = ["QA Diário Oficial", "Analista Gratificação Titulação"];
+  const lista_agentes = ["Analista Gratificação Titulação"];
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);

@@ -10,12 +10,12 @@ function sendMessage(setChatAtual:any,prompt:string, arquivos: FileList | null) 
 
   const searchParams = new URLSearchParams(window.location.search);
   const id_chat = searchParams.get("id_chat") ?? "defaultchat";
-  const agente = searchParams.get("agente") ?? "QA Diário Oficial";
+  const agente = searchParams.get("agente") ?? "Analista Gratificação Titulação";
 
   const formData = new FormData();
   formData.append("prompt", prompt);
   formData.append("id_chat", id_chat);
-  formData.append("id_usuario", "defaultuser");
+  formData.append("usuario", "defaultuser");
   formData.append("agente", agente);
 
   if (arquivos) {
