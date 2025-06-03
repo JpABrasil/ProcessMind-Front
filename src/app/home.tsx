@@ -44,10 +44,10 @@ function sendMessage(setChatAtual:any,prompt:string, arquivos: FileList | null,s
       searchParams.set("id_chat", data.novo_id);
       const newUrl = `?${searchParams.toString()}`;
       window.history.pushState({}, '', newUrl);
-      
+
       setListaChats((prev: any) =>
         prev.map((chat: any) =>
-            chat.titulo === "Novo Chat" ? { ...chat, id: data.novo_id } : chat
+            chat.title === "Novo Chat" ? { ...chat, id: data.novo_id } : chat
         )
       );
 
